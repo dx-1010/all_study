@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wrap</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .outBox{
+            width:100%;
+
+        }
+       
+        .banner{
+            height:10rem;
+            width:100%;
+            background:pink;
+        }
+        .navbar{
+            height:3rem;
+            width:100%;
+        }
+        .navbar-item{
+            line-height:3rem;
+            background:skyblue;
+            width:33.3%;
+            float:left;
+            list-style: none;
+        }
+        .content-item{
+            list-style:none;
+            height:30rem;
+            border: 1px solid #000;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <div class="banner"></div>
+        <ul class="navbar">
+            <li class="navbar-item">1</li>
+            <li class="navbar-item">2</li>
+            <li class="navbar-item">3</li>
+        </ul>
+        <ul class="content">
+            <li class="content-item">1</li>
+            <li class="content-item">2</li>
+            <li class="content-item" style="height:1000px;">3</li>
+        </ul>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(function(){
+            $('.navbar-item').click(function(){
+                let index = $(this).index();
+				
+                let navbaritemTop = $('.content-item').eq(index).offset().top;
+                console.log(navbaritemTop)
+                $('body,html').animate({
+                    scrollTop:navbaritemTop-$('.navbar').height(),
+                })
+            })
+
+            $(window).scroll(function(){
+                //页面滚动的高度
+                let docHeight = $('body,html').scrollTop();
+
+                //banner的高度
+                let bannerHeight = $('.banner').height()
+                console.log(bannerHeight)
+				
+				
+				//如果滚动的高度大于banner的高度，就让banne固定在顶部，反之回到最初状态
+                if(docHeight>bannerHeight){
+                    $('.navbar').css({
+                        position:'fixed',
+                        top:0,
+                        left:0,
+                    })
+                    $('.content').css({
+                        marginTop:$('.navbar').height()
+                    })
+                }else{
+                    $('.navbar').css({
+                        position:'static',
+                       
+                    })
+                    $('.content').css({
+                        marginTop:''
+                    })
+                }
+            })
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动导航</title>
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .nav{
+            height:40px;
+            width:600px;
+            margin:0 auto;
+        }
+        .nav li{
+            float:left;
+            width:198px;
+            margin-right:2px;
+            background:skyblue;
+            text-align:center;
+            color:#fff;
+            cursor: pointer;
+            
+        }
+        .content li{
+            width:100%;
+            height:400px;
+            font-size:40px;
+            line-height:400px;
+            text-align:center;
+            
+        }
+        .content .cont:first-child{
+            background:rgb(233, 71, 7);
+        }
+        .content .cont:nth-child(2){
+            background:rgb(163, 3, 30);
+        }
+        .content .cont:nth-child(3){
+            background:rgb(14, 212, 238);
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li>限量神券</li>
+        <li>必抢爆款</li>
+        <li>套餐直降</li>
+    </ul>
+    <ul class="content">
+        <li class="cont">限量神券111</li>
+        <li class="cont">必抢爆款222</li>
+        <li class="cont">套餐直降333</li>
+    </ul>
+    <div style="height:1000px;"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(function(){
+            $('.nav li').click(function(){
+                var index = $(this).index();
+                console.log(index)
+                var louti = $('.content .cont').eq(index).offset().top
+                console.log(louti)
+                $('html,body').animate({
+                    scrollTop: louti
+                })
+            })
+        })
+    </script>
+</body>
+</html>

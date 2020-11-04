@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>解决底部导航被弹起的问题</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 获取视图原始高度
+			let screenHeight = document.body.offsetHeight
+
+			// 为window绑定resize事件
+			window.onresize = function() {
+				let nowHeight = document.body.offsetHeight
+				console.log(nowHeight)
+				if (nowHeight < screenHeight) {
+					// 将底部弹起的按钮隐藏（可使用给按钮添加相应消失类）
+					$('.new_footer_ribbon').hide()
+				} else {
+					// 将按钮正常显示（可使用给按钮移除相应消失类）
+					$('.new_footer_ribbon').show()
+
+				}
+			}
+		</script>
+
+	</body>
+</html>

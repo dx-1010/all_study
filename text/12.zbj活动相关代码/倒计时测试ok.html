@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .day,
+        .hour,
+        .minutes,
+        .seconds {
+            display: inline-block;
+            padding: 10px;
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="showTime">
+        <span class="day"></span>
+        <span>天</span>
+        <span class="hour"></span>
+        <span>:</span>
+        <span class="minutes"></span>
+        <span>:</span>
+        <span class="seconds"></span>
+    </div>
+
+    <script>
+        function formatTime(ms) {
+            ms = new Date("2020/11/11 00:00:00").getTime() - Date.now();
+            if (ms <= 0) {
+                document.getElementById("showTime").innerHTML = '已结束'
+                window.cancelAnimationFrame(animate);
+				
+				clearInterval(ms)  //关闭计时器
+                return;
+            }
+            var ss = 1000;
+            var mi = ss * 60;
+            var hh = mi * 60;
+            var dd = hh * 24;
+
+            var day = parseInt(ms / dd);
+            var hour = parseInt((ms - day * dd) / hh);
+            var minute = parseInt((ms - day * dd - hour * hh) / mi);
+            var second = parseInt((ms - day * dd - hour * hh - minute * mi) / ss);
+            //   var milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
+
+            let sb = '';
+
+            if (day >= 0) {
+                day = day
+            }
+            //   if(day>=0){
+            //     sb = day > 9 ? sb + day + ":" : sb + '0' + day + ":"
+            //   }
+            if (hour >= 0) {
+                /* if(hour >= 0 && hour <= 9){
+                  sb = sb + '0' + hour + ":"
+                }else{
+                  sb += hour + ":" 
+                } */
+                hour = hour > 9 ? hour : '0' + hour
+            }
+            if (minute >= 0) {
+                minute = minute > 9 ? minute : '0' + minute
+            }
+            if (second >= 0) {
+                second = second > 9 ? second : '0' + second
+            }
+            //   if (milliSecond >= 0) {
+            //     sb += parseInt(milliSecond / 100)
+            //   }
+            document.querySelector(".day").innerHTML = day
+            document.querySelector(".hour").innerHTML = hour
+            document.querySelector(".minutes").innerHTML = minute
+            document.querySelector(".seconds").innerHTML = second
+            animate = window.requestAnimationFrame(formatTime);
+        }
+        // window.requestAnimationFrame(formatTime)
+        var animate;
+        formatTime();
+    </script>
+	
+</body>
+
+</html>
