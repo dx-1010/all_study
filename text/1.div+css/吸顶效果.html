@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>吸顶效果</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+		/* 	body{
+				font-size:38px;
+			} */
+			*{
+				margin:0;
+				padding:0;
+			}
+			.banner{
+				height:12rem;
+				width:100%;
+			}
+			.banner img{
+				width:100%;
+				height:100%;
+				vertical-align: middle;
+			}
+			.tabbar{
+				height:4rem;
+				background:#9ACF53;
+				color:#fff;
+				line-height:4rem;
+				width:100%;
+			}
+			.tabbar-item{
+				float: left;
+				width:33.3%;
+				height:4rem;
+				text-align:center
+			}
+			.active{
+				background:#66A4D7;
+				font-size:1.5rem;
+			}
+			
+			.content-item{
+				height:2000px;
+				text-align: center;
+				
+			}
+			.content-item:nth-child(1){
+				background:#00FFFF;
+				
+			}
+			.content-item:nth-child(2){
+				background:#ffaa00;
+			}
+			.content-item:nth-child(3){
+				background:#ffaaff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div class="banner">
+				<img src="../images/11.jpg" >
+			</div>
+			<div class="tabbar">
+				<div class="tabbar-item active">
+					1
+				</div>
+				<div class="tabbar-item">
+					2
+				</div>
+				<div class="tabbar-item">
+					3
+				</div>
+			</div>
+			<div class="content">
+				<div class="content-item">
+					1
+				</div>
+				<div class="content-item">
+					2
+				</div>
+				<div class="content-item">
+					3
+				</div>
+				
+			</div>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				console.log($(window).height())
+				//1.页面滚动事件
+				$(window).scroll(function(){
+					// banner的高度
+					let bannerH = $('.banner').height();
+					//页面被卷去的高度
+					let scrTop = document.documentElement.scrollTop;
+					//如果被卷去的高度>=banner的高度，则让tabber固定在顶部
+					if(scrTop>=bannerH){
+						$('.tabbar').css({
+							position:'fixed',
+							top:0,
+							left:0,
+							zIndex:2,
+						})
+					}else{
+						$('.tabbar').css({
+							position:'static',
+						})
+					}
+					console.log('卷去的高度',document.documentElement.scrollTop)
+					
+					//滚动至对应内容区域的时候，相应tabbar-item添加上类名，其它移除类名
+					$('.content-item').each(function(v,i){
+						let ciTop = $(this).offset().top;
+						console.log('内容区域距离顶部的距离',ciTop)
+						if(scrTop>ciTop-$(window).height()/4 ){
+							$('.tabbar-item').eq(v).addClass('active').siblings().removeClass('active')
+						}
+					})
+				})
+				
+				//2.tabbar点击事件
+				$('.tabbar-item').on('click',function(){
+					//点击当前这个添加上active类名，其它兄弟移除类名
+					$(this).addClass('active').siblings().removeClass('active')
+					let index = $(this).index();
+					//获取内容区域
+					let contentTop = $('.content-item').eq(index).offset().top;
+					$('body,html').animate({
+					    scrollTop: contentTop - $('.tabbar').height(),
+					})
+					console.log(contentTop)
+				})
+				
+			})
+		</script>
+	</body>
+</html>
