@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css">
+			input[type="checkbox"]{
+			    -webkit-appearance: none;
+				vertical-align:middle;
+				margin-top:0;
+				background:#fff;
+				border:#999 solid 1px;
+				border-radius: 50%;
+				min-height: 22px;
+				min-width: 22px;
+				outline: none;
+			}
+			input[type="checkbox"]:checked {
+			    background: #3190e8;
+			}
+			input[type=checkbox]:checked::after{
+			    content: '';
+			    top: 3px;
+			    left: 3px;
+			    position: absolute;
+			    background: transparent;
+			    border: #fff solid 2px;
+			    border-top: none;
+			    border-right: none;
+			    height: 6px;
+			    width: 13px;
+			    -moz-transform: rotate(-45deg);
+			    -ms-transform: rotate(-45deg);
+			    -webkit-transform: rotate(-45deg); 
+			    transform: rotate(-45deg);
+			}
+			/* input[type="checkbox"],input[type="radio"]{
+			            -moz-appearance: checkbox;
+			            -webkit-appearance: checkbox;
+			            -ms-appearance: checkbox;
+			            /* appearance渲染input:checkbox样式的复选框按钮默认为none */
+			            appearance: checkbox;
+			        } */
+		</style>
+	</head>
+	<body>
+		<input type="checkbox" name="fruit" id="" value="猕猴桃" />猕猴桃
+		<input type="checkbox" name="fruit" id="" value="西瓜" />西瓜
+		
+	</body>
+</html>

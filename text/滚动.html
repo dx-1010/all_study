@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>滚动</title>
+	</head>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		.box{
+			width:200px;
+			height:200px;
+			background:#ccc;
+			margin-top:200px; 
+			padding:10px;
+		}
+		.h2000{
+			height:2000px;
+		}
+		
+	</style>
+	<body>
+	<div class="box"></div>
+    <div class="h2000"></div>
+		<script type="text/javascript">
+			window.onload = function(){
+				console.log(document.documentElement.clientHeight)   //页面的可视高度
+				console.log(document.body.scrollHeight)   //获取页面body的高度
+				console.log(document.documentElement.scrollHeight)
+				let box = document.querySelector('.box');
+				console.log(box.offsetTop,'111111111')
+				//监听鼠标滚动事件
+				window.onscroll = function(e){
+					 var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+					 console.log(scrollTop)
+					 if(scrollTop+document.documentElement.clientHeight>box.offsetTop){
+						 console.log(scrollTop+document.documentElement.clientHeight,'我要加载下一页的数据了')
+					 }
+				}
+			}
+		</script>
+	</body>
+</html>

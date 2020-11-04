@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>随机生成图片</title>
+		<link rel="shortcut icon" href="./favicon.ico" />
+		<style>
+			//设置css样式
+			a,
+			div {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			.d1 {
+				width: 700px;
+				height: 700px;
+			}
+
+			img {
+				display: block;
+				width: 150px;
+				height: 150px;
+				float: left;
+				margin: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- a标签的用途 -->
+		<a href="mailto:123456789@qq.com"> 给清华招生办发邮件</a><br>
+		<a href="tel:15683828511"> 给清华招生打电话</a><br>
+		<!-- 友情提示：开发步骤 结构 样式 js 
+	        先创建足够的img标签，用来将样式设置好，然后注释掉，通过js生成img
+	     -->
+		<button id="btn">换一换</button>
+
+		<div id="div1" class="d1">
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+			<!-- <img src="" alt=""> -->
+		</div>
+	</body>
+	<script>
+		//获取元素
+		var div1 = document.getElementById('div1')
+		var btn = document.getElementById('btn');
+		//生成一个临时容器
+		var frag = document.createDocumentFragment();
+		oImg(8)
+
+		function oImg(numb) {
+			//通过for循环向HTML中添加图片标签
+			for (var i = 0; i < numb; i++) {
+				let num = Math.round((Math.random() + 0.01) * 27); //我准备了50张图片，所以乘50
+				console.log(num)
+				//生成img标签
+				let aImg = document.createElement("img");
+				//生成a标签，可以添加图片点击查看原图的效果,也可以不添加，个人随意
+				let a = document.createElement("a");
+				//使用拼接的方法给生成的img标签插入图片
+				aImg.src = "./images/" + num + ".jpg";
+				//将生成的标签插入到它们的父元素中
+				a.appendChild(aImg);
+				frag.appendChild(a);
+				a.href = aImg.src;
+				// a.href = "http://www.baidu.com";
+			}
+			// frag.setAttribute('width','700px')
+			div1.appendChild(frag);
+		}
+		//给按钮添加刷新功能，可以随机生成新的图片
+		btn.onclick = function() {
+			window.location.reload()
+		}
+	</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>animation</title>
+		<style type="text/css">
+			#box{
+				width:300px;
+				height:200px;
+			}
+			img{
+				height:100%;
+				height:100%;
+				transition: all 1s;   
+				/* 谁做动画，transition就添加给谁 */
+			}
+			#box:hover img{
+				animation: bgcor 1s;
+			}
+			@keyframes bgcor{
+				0%{opacity:1;}
+				70%{opacity: .6;}
+				100%{opacity: 1;}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="https://d.vpimg1.com/upcb/2020/07/06/157/ias_159401973076693_570x273_90.jpg" >
+		</div>
+	</body>
+</html>

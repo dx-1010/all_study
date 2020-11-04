@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>下拉框事件</title>
+	</head>
+	<body>
+		<!-- 详细知识点请查看知识点图片 -->
+		　<select name="" id="sel">
+				   <option value="" disabled selected hidden>请选择输入方式</option>
+			　　　　<option value="电话">电话</option>
+			　　　　<option value="微信">微信</option>
+			　　　　<option value="QQ">QQ</option>
+			　　　　<option value="QQ1">QQ1</option>
+		 </select>
+		
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script>
+			
+			// js获取
+			// var sel=document.getElementById("sel");
+			// 　　sel.onchange=function(){
+			// 	   console.log(sel.selectedIndex)
+			// 　　　　console.log(sel.options[sel.selectedIndex].value);
+			// 　　}　
+			
+			//jq获取
+			$('#sel').change(function(){
+				//获取选中下拉框的属性值
+				let val = $('#sel option:selected').val();
+				switch(val){
+					case '电话':
+					console.log('我是电话');
+					break;
+					case '微信':
+					console.log('我是微信');
+					break;
+					case 'QQ':
+					console.log('我是QQ');
+					break;
+					default:
+					console.log('我什么都不是');
+				}
+				// console.log($('#sel option:selected').val())
+			})
+			
+			
+		</script>
+	</body>
+</html>

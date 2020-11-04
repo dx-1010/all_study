@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自动刷新页面</title>
+	</head>
+	<body>
+		<h1>倒计时：</h1>
+		<button class="xianbtn">立即领取</button>
+		<button class="xianbtn1">立即领取</button>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			
+			 function xianTime(ms) {
+			                    // ms = new Date("2020/7/23 16:41:00").getTime() - Date.now();
+			                    ms = new Date("2020/11/11 00:00:00").getTime() - Date.now();
+			                    $('.xianbtn').attr('disabled',"true")
+			                    // $('.xianbtn').css({background:'#ccc',border:'none'})
+			                    $('.xian').removeClass('single')
+			                    if (ms <= 0) {
+			                        $('.xianbtn').removeAttr('disabled')
+			                        $('.xian').addClass('single')
+			                         // setTimeout(function(){window.location.reload()},30)
+			                        // $('.xianbtn').css({background:'',border:''})
+									 clearInterval(ms);
+			                        window.cancelAnimationFrame(animate);
+			                        return;
+			                    }
+			                    var ss = 1000;
+			                    var mi = ss * 60;
+			                    var hh = mi * 60;
+			                    var dd = hh * 24;
+			
+			                    var day = parseInt(ms / dd);
+			                    var hour = parseInt((ms - day * dd) / hh);
+			                    var minute = parseInt((ms - day * dd - hour * hh) / mi);
+			                    var second = parseInt((ms - day * dd - hour * hh - minute * mi) / ss);
+			
+			                    let sb = '';
+			
+			                    if (day >= 0) {
+			                        day = day > 9 ? day : '0' + day
+			                    }
+			
+			                    if (hour >= 0) {
+			                        hour = hour > 9 ? hour : '0' + hour
+			                    }
+			                    if (minute >= 0) {
+			                        minute = minute > 9 ? minute : '0' + minute
+			                    }
+			                    if (second >= 0) {
+			                        second = second > 9 ? second : '0' + second
+			                    }
+									
+								$('h1').html(`${day}:${hour}:${minute}:${second}`)
+			                    animate = window.requestAnimationFrame(xianTime);
+			                }
+			                var animate;
+			                xianTime();
+		</script>
+	</body>
+</html>

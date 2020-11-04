@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生成随机数点名</title>
+		
+		<style type="text/css">
+			@font-face {
+			  font-family: 'icomoon';
+			  src:  url('fonts/icomoon.eot?t7sy9l');
+			  src:  url('fonts/icomoon.eot?t7sy9l#iefix') format('embedded-opentype'),
+			    url('fonts/icomoon.ttf?t7sy9l') format('truetype'),
+			    url('fonts/icomoon.woff?t7sy9l') format('woff'),
+			    url('fonts/icomoon.svg?t7sy9l#icomoon') format('svg');
+			  font-weight: normal;
+			  font-style: normal;
+			  font-display: block;
+			}
+			#box{
+				margin:100px auto;
+				width:400px;
+				height:340px;
+				background:skyblue;
+				line-height:340px;
+				text-align:center;
+				font-weight:500;
+				font-size:26px;
+				color:pink;
+				border-radius: 50%;
+			}
+			
+			.span{
+				font-size:18px;
+				color:#fff;
+			}
+			button{
+				border:0;
+				background:pink;
+				padding:10px;
+				color:#fff;
+				border-radius: 50%;
+				cursor: pointer;
+				outline: none;
+				font-family: 'icomoon';
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<button type="button">换一换</button>
+			<span class="span">谁是下一个小可爱：</span><span id="name">???</span>
+		</div>
+		
+		<script type="text/javascript">
+			// window.onload = choosePic;
+			// function choosePic() {
+			//     var myPix = new Array("images/lion.jpg","images/tiger.jpg","images/bear.jpg");
+			//     var randomNum = Math.floor((Math.random() * myPix.length));
+			//     document.getElementById("myPicture").src = myPix[randomNum];
+			// }
+			//获取元素
+			let btn = document.querySelector('button');
+			let name = document.querySelector('#name');
+			window.onload = getName();
+			function getName(){
+				var chooseName = ['杜希','杜运','杜思睿','陈坚','陈露丝','张林','刘小宇','廖林','丁汤立','刘田','李益','姚憨憨','憨憨来','姚可爱'];   //创建一个数组
+				var randomName = Math.floor(Math.random()*chooseName.length);
+				name.innerHTML = chooseName[randomName];
+				// console.log()
+			}
+			btn.onclick = getName;
+			
+		</script>
+	</body>
+</html>

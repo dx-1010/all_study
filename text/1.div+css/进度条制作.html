@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>进度条制作</title>
+		<style type="text/css">
+			#box {
+				width: 150px;
+				height: 12px;
+				border-radius: 9px;
+				background: #ccc;
+				overflow: hidden;
+				display:inline-block;
+			}
+
+			#long {
+				/* width: 90%; */
+				height: 100%;
+				background-image: linear-gradient(90deg,#79d1ff,#ff3ca7);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="long">
+
+			</div>
+			
+		</div>
+		<span>还剩</span>
+		<span id="sheng">
+			100
+		</span>
+		<span>个名额</span>
+		<button type="button">立即领取</button>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var num = parseInt($('#sheng').html().trim());
+				console.log(num)
+				//显示当前进度条的长度
+				$('#long').css({
+					'width':num+'%',
+				})
+				
+				//点击立即领取数量减少逐渐减少，进度条逐渐增加
+				$('button').click(function(){
+					num--
+					if($('#sheng').html()==0){
+						num=0;
+						$(this).prop('disabled',true)
+					}else{
+						$('#sheng').html(num)
+						console.log($('#sheng').html(num))
+						$('#long').css({
+							'width':num+'%',
+						})
+					}
+					
+				})
+			})
+		</script>
+	</body>
+</html>

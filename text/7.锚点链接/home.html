@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<style type="text/css">
+			#container{
+				width:100%;
+				display: flex;
+				justify-content: space-between;
+			}
+			.left{
+				width:200px;
+				height:200px;
+				overflow: hidden;
+				margin-right:10px;
+				
+			}
+			/* .left_sub{
+				height:100%;
+				border:1px solid tomato;
+				position:fixed;
+				top:40px;
+				left:10px;
+				display: flex;
+				flex-direction: column;
+				line-height:30px;
+			}	 */
+			.right{
+				flex:1;
+				
+			}
+			.right div{
+				height:300px;
+				width:200px;
+			}
+			.right div:nth-child(odd){
+				background:skyblue;
+			}
+			.right div:nth-child(even){
+				background:thistle;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="detail.html#box">跳到box</a>
+		<a href="detail.html#box1">跳到box1</a>
+		
+		<div id="container">
+			<div class="left">
+				<div class="left_sub">
+					<a href="#right1">1</a>
+					<a href="#right2">2</a>
+					<a href="#right3">3</a>
+					<a href="#right4">4</a>
+					<a href="#right5">5</a>
+					<a href="#right6">6</a>
+					<a href="#right7">7</a>
+					<a href="#right8">8</a>
+				</div>
+			</div>
+			<div class="right">
+				<div id="right1">
+					1
+				</div>
+				<div id="right2">
+					2
+				</div>
+				<div id="right3">
+					3
+				</div>
+				<div id="right4">
+					4
+				</div>
+				<div id="right5">
+					5
+				</div>
+				<div id="right6">
+					6
+				</div>
+				<div id="right7">
+					7
+				</div>
+				<div id="right8">
+					8
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

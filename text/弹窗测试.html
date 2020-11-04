@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.welfare-pub-dialog {
+			    background: rgba(0,0,0,.7);
+			    position: fixed;
+			    left: 0;
+			    top: 0;
+			    width: 100%;
+			    height: 100%;
+			    overflow: hidden;
+			    z-index: 1024;
+			}
+			.welfare-pub-dialog .pub-dialog {
+			    width: 500px;
+			    background: #fff;
+			    border-radius: 4px;
+			    background-color: #fff;
+			    background-clip: padding-box;
+			    position: absolute;
+			    height: 360px;
+			    top: 0;
+			    left: 0;
+			    bottom: 0;
+			    right: 0;
+			    margin: auto;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-close {
+			    position: absolute;
+			    right: 10px;
+			    top: 10px;
+			    font-size: 20px;
+			    color: #666;
+			    cursor: pointer;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-title {
+			    margin: 20px 0 15px 25px;
+			    border-left: 4px solid #ff6900;
+			    padding-left: 15px;
+			    font-size: 18px;
+			    font-weight: 700;
+			    line-height: 20px;
+			    height: 20px;
+			    overflow: hidden;
+			    margin-right: 25px;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-desc {
+			    margin: 0 25px;
+			    height: 140px;
+			    overflow-y: scroll;
+			    overflow-x: hidden;
+			    background: #f8f8f8;
+			    padding: 10px;
+			    font-size: 14px;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-desc h5 {
+			    font-size: 16px;
+			    margin: 10px 0;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-login {
+			    margin: 0 25px;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-login .pub-label {
+			    font-size: 12px;
+			    margin: 15px 0 10px;
+			    display: inline-block;
+			    color: #666;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-pub {
+			    width: 450px;
+			    height: 32px;
+			    background: #ff6900;
+			    border-radius: 3px;
+			    margin: 0 25px;
+			    line-height: 32px;
+			    text-align: center;
+			    color: #fff;
+			    cursor: pointer;
+			    position: absolute;
+			    bottom: 15px;
+			    left: auto;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-login .pub-input {
+			    display: inline-block;
+			    width: 220px;
+			    height: 32px;
+			    background: #f8f8f8;
+			    border: 1px solid #e1e1e1;
+			    border-radius: 3px;
+			    font-size: 12px;
+			    padding: 0;
+			    line-height: 30px;
+			    padding-left: 5px;
+			    box-sizing: border-box;
+			    margin-right: 5px;
+			}
+			.welfare-pub-dialog .pub-dialog .dialog-login .pub-input .yzm-send {
+			    color: #999;
+			    text-decoration: none;
+			    float: right;
+			    margin-right: 5px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="welfare-pub-dialog">
+			<div class="pub-dialog">
+				<div class="dialog-close">×</div>
+				<div class="dialog-title">商业计划书补贴</div>
+				<div class="dialog-desc">
+					<h5>一、福利描述</h5>
+					提供八戒严选平台官方品牌营销类目商业计划书服务满减优惠。
+					<h5>二、福利领取须知</h5>
+					1、生成领取记录后，工作人员将在1~2个工作日内通过电话与您联系，协助您进行消耗；
+					2、如工作人员来电时，您达到3次未接通，则视为自动放弃，八戒严选将不再为您发放本次活动补贴；
+					3、仅限八戒严选官方品牌营销类目商业计划书服务到达满减金额要求使用；
+					4、不与其他活动/优惠同时使用。不可转让、折现、退换等。
+				</div>
+				<div class="dialog-login">
+					<div class="section-login ">
+						<label class="pub-label">验证手机号即可领取</label>
+						<div class="pub-content pub-content__new">
+							<div class="eidt-mobile-wrapper">
+								<input class="pub-input" type="text" name="modifyphone" data-linkid="rphone" maxlength="11" placeholder="填写手机号码">
+								<div class="pub-input"><input class="yzm-input" type="text" maxlength="6" name="modifyphone-yzm" placeholder="填写验证码"
+									 data-linkid="welfare-res-pub-dialog-yzm">
+									<a class="yzm-send" href="javascript:;" data-linkid="rcode" data-role="verify-sender">获取验证码</a></div>
+							</div>
+							<p class="j-phone-error hide mt5"><span class="j-error-tip"></span></p>
+							<p class="j-verify-error hide mt5"><span class="j-error-tip"></span></p>
+						</div><input type="hidden" name="zbj_csrf_token"><input type="hidden" name="vid"><input type="hidden" name="uid"><input
+						 type="hidden" name="way_type" value="134"><input class="no-exsit hide" type="radio" name="_exists_phone" value="0"><input
+						 class="use-exsit hide" type="radio" name="_exists_phone" value="">
+					</div>
+				</div>
+				<div class="dialog-pub" data-linkid="welfare-res-pub-dialog-btn">立即领取</div>
+			</div>
+		</div>
+	</body>
+</html>

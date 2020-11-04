@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>王者荣耀手风琴案例</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#box{
+				width:772px;
+				height:106px;
+				border:1px solid #ccc;
+				margin:100px auto;
+			}
+			ul{
+				height:106px;
+			}
+			
+			ul>li{
+				list-style:none;
+				float:left;
+			}
+			img{
+				position:relative;
+				top:0;
+				left:0;
+			}
+			
+			.firstImg{
+				width:69px;
+				height:69px;
+			}
+			.secondImg{
+				/* width:224px; */
+				height:69px;
+				
+			}
+			li{
+				width:69px;
+				transition: 1s ease-in-out;
+				cursor: pointer;
+			}
+			
+			.active{
+				width:224px;
+				transition:1s ease-in-out;
+			    overflow: hidden;
+				
+			}
+			.active .firstImg{
+				display: none;
+				
+			}
+			.active .secondImg{
+				display:inline;
+			}
+			.secondImg{
+				display: none;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<!-- 总结：只需要给父元素添加一个类名即可!!! -->
+		<div id="box">
+			<ul>
+				<li class="active">
+					<img class="firstImg" src="王者荣耀图片/1.jpg" >
+					<img class="secondImg" src="王者荣耀图片/2.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/3.jpg" >
+					<img class="secondImg" src="王者荣耀图片/4.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/5.jpg" >
+					<img class="secondImg" src="王者荣耀图片/6.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/7.jpg" >
+					<img class="secondImg" src="王者荣耀图片/8.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/9.jpg" >
+					<img class="secondImg" src="王者荣耀图片/10.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/11.jpg" >
+					<img class="secondImg" src="王者荣耀图片/12.png" >
+				</li>
+				<li>
+					<img class="firstImg" src="王者荣耀图片/13.jpg" >
+					<img class="secondImg" src="王者荣耀图片/14.png" >
+				</li>
+			</ul>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.firstImg').hover(function(){
+					$(this).parent('li').addClass('active');
+					// $(this).parent('li').siblings().removeClass('active')
+
+				},function(){
+					$(this).parent('li').siblings().removeClass('active')
+				})
+			})
+		</script>
+	</body>
+</html>

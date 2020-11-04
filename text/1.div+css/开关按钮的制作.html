@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>开关按钮的制作</title>
+		<style type="text/css">
+			
+			.mxc-menu > .mxc-menu-item > .mxc-switch{
+				position: relative;
+				box-sizing: content-box;
+				width: 2.6rem;
+				height: 1.4rem;
+				border: 1px solid #ccc;
+				outline: 0;
+				border-radius: .75rem;
+				background-color: rgba(0,0,0,.1);
+				/* 去掉webkit内核里默认的样式 */
+				-webkit-appearance: none;
+				/* 去掉webkit内核里默认的点击效果 */
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				transition: all .3s;
+			}
+			.mxc-menu > .mxc-menu-item > .mxc-switch:checked{
+				border-color: #07C160;
+				background-color: #07C160;
+			}
+			
+			.mxc-menu > .mxc-menu-item > .mxc-switch::after{
+				content:" ";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 1.4rem;
+				height: 1.4rem;
+				border-radius: .7rem;
+				background-color: #FFFFFF;
+				box-shadow: 0 0 2px #999;
+				transition: all .3s;
+			}
+			.mxc-menu > .mxc-menu-item > .mxc-switch:checked::after{
+				left: 1.2rem;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mxc-menu">
+			<a class="mxc-menu-item">
+				<p class="mxc-menu-name">开关按钮的制作</p>
+				<input class="mxc-switch" type="checkbox">
+			</a>
+		</div>
+		
+		
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			
+			//获取input框的状态
+			$('input').click(function(){
+				console.log($(this).prop('checked'))
+			})
+			
+		</script>
+	</body>
+</html>

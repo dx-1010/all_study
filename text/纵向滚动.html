@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>纵向滚动</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			.outbox{
+				height:30px;
+				line-height:30px;
+				position:relative;
+				overflow: hidden;
+				
+			}
+			ul{
+				height:150px;
+				line-height:30px;
+				position:absolute;
+				top:0;
+				left:0;
+				/* transition: all .6s; */
+			}
+			ul li{
+				list-style: none;
+				line-height:30px;
+				width:300px;
+				background:orange;
+				text-indent:10px;
+				color:#fff;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outbox">
+			<ul class="list">
+				<li>1.听海哭的声音</li>
+				<li>2.手心的蔷薇</li>
+				<li>3.今天也想见到你</li>
+				<li>4.夏天的风</li>
+				<li>5.最美的期待</li>
+				<li>1.听海哭的声音</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			//获取元素
+			let list = document.querySelector('.list');
+			let lis = document.querySelectorAll('li');
+			//定义变量
+			let index = 0;
+			var timer = null;
+		
+			timer = setInterval(function(){
+				
+				if(index<lis.length){
+					
+					 list.style.transition= "all .6s";
+					 // list.style.transform = "translateY(" + index*-30 + "px)";
+					 list.style.transform = `translateY(${index*-30}px)`
+					// list.style.top = index*-30+'px';
+					index++;
+				}else{
+					index=0;
+					list.style.transition = "";
+					list.style.transform = "translateY(0)";
+				}
+			},1000)
+			
+		</script>
+	</body>
+</html>

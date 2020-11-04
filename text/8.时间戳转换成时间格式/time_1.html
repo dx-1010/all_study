@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>yyyy-mm-dd hh:mm:ss 格式</title>
+		<style type="text/css">
+			#timeBox{
+				color:pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="timeBox">
+			
+		</div>
+		<button type="button">点我切换颜色</button>
+		<script type="text/javascript">
+			window.onload = function(){
+				let timeBox = document.querySelector('#timeBox');
+				timeBox.innerHTML = timeStamp(844876800000)
+				setInterval(function(){
+					timeBox.style.color = f2()
+				},1000)
+			}
+			
+			
+			//t为某个时间戳,毫秒
+			function timeStamp(t) {
+			            let date = new Date(t);
+						console.log(date)
+			            let Y = date.getFullYear() ;
+						console.log(Y)
+			            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+			            let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) ;
+			            let H = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours());
+			            let Mi = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+			            let S = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+			            let tempDate = Y + '-'+ M  + '-'+ D+ ' ' + H + ':' + Mi + ':' + S;
+			            return tempDate;
+			        }
+			        console.log("时间戳转换后:", timeStamp(844876800000))	        
+					
+					
+			//去掉形参,获取当前时间戳然后转换即当前时间	
+			function nowTime() {
+			            let date = new Date();
+			            let Y = date.getFullYear() ;
+			            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+			            let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) ;
+			            let H = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours());
+			            let Mi = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+			            let S = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+			            let tempDate = Y + '-'+ M  + '-'+ D+ ' ' + H + ':' + Mi + ':' + S;
+			            return tempDate;
+			        }
+			        console.log("时间戳转换后:", nowTime())	   
+		</script>
+		
+		<script type="text/javascript">
+			// 方法：随机生成颜色
+			function f2(){
+			var str="0123456789abcdef";
+			var color="#";
+				for(var i=0;i<6;i++){
+				var num=Math.floor(Math.random()*str.length);
+				color=color+str[num];
+				}
+				return color;
+			}
+			
+		</script>
+	</body>
+</html>

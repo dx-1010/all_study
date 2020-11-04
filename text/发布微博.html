@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>发布微博</title>
+		<style type="text/css">
+			#box{
+				height:auto;
+				width:584px;
+				margin:0 auto;
+			}
+			button{
+				border:none;
+				padding:10px 20px;
+				background:orange;
+				outline: none;
+				color:#fff;
+				float:right; 
+				border-radius: 4px;
+				cursor: pointer;
+				user-select:none;
+			}
+			textarea{
+				resize:none;
+				outline: none;
+			}
+				
+			#contentList{
+				margin-top:6px;
+				width:100%;
+				min-height:300px;
+				border:1px solid #eee;
+			}
+			#btn{
+				overflow: hidden;
+			}
+			.top{
+				text-indent: 2rem;
+			}
+			.bottom{
+				
+				display: flex;
+				justify-content: space-between;
+				border-bottom:1px dashed #ccc;
+			}
+			.ding,.cai,.del{
+				cursor: pointer;
+				padding:0 4px;
+			}
+			.pad{
+				width:95%;
+				margin:0 auto;
+				margin-bottom:10px;
+			}
+			span{
+				padding:4px;
+				background:pink;
+				/*设置文字不能被选中     以下为css样式*/
+				-webkit-user-select:none;
+				-moz-user-select:none;
+				-ms-user-select:none;
+				user-select:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<textarea rows="10" cols="80">
+				
+			</textarea><br>
+			<div id="btn">
+				<button type="button">发布</button>
+			</div>
+			<div id="contentList">
+				<!-- <div class="pad">
+					<div class="top">
+						烦请中国建设银行给我一个交代，我在身份证未丢失，2020年未出过浙江省的情况下到底是什么原因让你们可以在我本人不到场的情况下给深圳市远志建筑工程有限公司担保40,000,000.00元？
+					</div>
+					<div class="bottom">
+						<div class="left">
+							2020-7-8
+						</div>
+						<div class="right">
+							<span class="ding">
+								0
+							</span>
+							<span class="cai">
+								0
+							</span>
+							<span class="del">
+								删除
+							</span>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('textarea').blur(function(){
+					console.log($('textarea').val().trim())
+				})
+				//监听按钮的点击事件
+				$('button').click(function(){
+					//获取输入的内容
+					var val = $('textarea').val().trim();
+					
+					 if(val){
+						 $('#contentList').prepend(`<div class="pad">
+						 		<div class="top">
+						 			${val}
+						 		</div>
+						 		<div class="bottom">
+						 			<div class="left">
+						 				${new Date().toLocaleString()}
+						 			</div>
+						 			<div class="right">
+						 				<span class="ding">
+										0</span>
+						 					
+						 				
+						 				<span class="cai">0</span>
+						 					
+						 				
+						 				<span class="del">
+						 					删除
+						 				</span>
+						 			</div>
+						 		</div>
+						 	</div>`);
+						  $('textarea').val("")
+					 }else{
+						 alert('发布内容不能为空')
+					 }
+				})
+				
+				//监听顶的事件,由于是动态添加的元素，所以需要通过事件委派来绑定事件
+				
+				
+				$('body').delegate('.ding','click',function(){
+					//获取值
+					$(this).html(parseInt($(this).html())+1)
+				})
+				
+				$('body').delegate('.cai','click',function(){
+					//获取值					
+						$(this).html(parseInt($(this).html())+1)
+				})
+				
+				//删除当前元素
+				$('body').delegate('.del','click',function(){
+					$(this).parents('.pad').remove();
+					
+				})
+			})
+			
+			var arr = [ {uuid: ["3ea2b74e-f816-4851-a1c6-9e8142463a1f", "a33bb03b-ac00-4f24-82cf-ce62a9ab8af1"], status: true} ];
+			var obj = arr[0].uuid.map((item,index)=>{
+				return {'uuid':item,status:true}
+				console.log(item,index)
+			})
+			console.log(obj)
+		</script>
+	</body>
+</html>

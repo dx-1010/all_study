@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>b页面</title>
+		<style type="text/css">
+			ul{
+				list-style: none;
+				display: flex;
+				width:80%;
+				margin:100px auto;
+				justify-content: space-between;
+				align-items:center;
+			}
+			li{
+				color:pink;
+				width:33%;
+				text-align:center;
+				background:skyblue;
+				font-size:18px;
+				cursor: pointer;
+			}
+			li.active{
+				color:#fff;
+				background:tomato;
+			}
+			#content{
+				width:80%;
+				margin:100px auto;
+				height:200px;
+			}
+				
+			.item{
+				width:100%;
+				height:100%;
+				border:1px solid #00FFFF;
+				display: none;
+			}
+			.show{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<span id="span">
+			当前位置:<a href="" class="city">美国公司</a>
+		</span>
+		
+		<!-- 导航区 -->
+		<ul>
+			<li class="active" data-index='0'>注册美国公司的好处</li>
+			<li data-index='1'>注册美国公司的流程</li>
+			<li data-index='2'>注册美国公司的条件</li>
+		</ul>
+		
+		<!-- 内容区 -->
+		<div id="content">
+			<div class="item show">
+				注册美国公司的好处
+			</div>
+			<div class="item">
+				注册美国公司的流程
+			</div>
+			<div class="item">
+				注册美国公司的条件
+			</div>
+		</div>
+
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//定义一个空对象来存储路径中获取的参数
+				var object = {};
+				//1.获取？后面的所有内容
+				var url= decodeURI(location.search);  
+				// 2.截取？后面的字符串
+				let urlData = url.substr(1);
+				var strs = urlData.split("&");
+				 console.log(strs)
+				 for(var i = 0; i < strs.length; i ++)  
+				    {   
+				 　　　　object[strs[i].split("=")[0]]=strs[i].split("=")[1]
+				 　　　}			
+				console.log(object)
+				
+				$('.city').attr('href',location.href)
+				$('.city').html(object.name)
+				
+				
+				switch(object.type){
+					case '0':
+					$('.item').eq(0).addClass('show').siblings().removeClass('show')
+					$('li').eq(0).addClass('active').siblings().removeClass('active')
+					break;
+					case '1':
+					$('.item').eq(1).addClass('show').siblings().removeClass('show')
+					$('li').eq(1).addClass('active').siblings().removeClass('active')
+					break;
+					case '2':
+					$('.item').eq(2).addClass('show').siblings().removeClass('show')
+					$('li').eq(2).addClass('active').siblings().removeClass('active')
+					break;
+				}
+			})
+		</script>
+		
+		<script type="text/javascript">
+			$(function(){
+				$('li').on('click',function(){
+					let index = $(this).data('index');
+					$(this).addClass('active').siblings().removeClass('active')
+					//获取所有的内容区域
+					$('.item').eq(index).addClass('show').siblings().removeClass('show')
+					console.log(index)
+				})
+				
+				
+				
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>a页面</title>
+	</head>
+	<body>
+		<a href="b.html?id=111&name=美国公司">美国公司</a>
+		<a href="b.html?id=111&name=日本公司">日本公司</a>
+		<a href="b.html?id=111&name=英国公司">英国公司</a>
+		<a href="b.html?id=111&name=加拿大公司">加拿大公司</a>		
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<!-- <script>
+					function GetRequest(value) {
+						//url例子：www.bicycle.com?id="123456"&Name="bicycle"；  
+						var url = decodeURI(location.search); //?id="123456"&Name="bicycle";
+						var object = {};
+						if (url.indexOf("?") != -1) //url中存在问号，也就说有参数。  
+						{
+							var str = url.substr(1); //得到?后面的字符串
+							var strs = str.split("&"); //将得到的参数分隔成数组[id="123456",Name="bicycle"];
+							for (var i = 0; i < strs.length; i++) {
+								object[strs[i].split("=")[0]] = strs[i].split("=")[1]
+							}
+						}
+						return object[value];
+					}
+					var urlData = GetRequest();
+					console.log(urlData)
+					
+		</script> -->
+		<div id="toNav" style="margin-top:200px;">
+			<a href="b.html?type=0">注册美国公司的好处</a><br>
+			<a href="b.html?type=1">注册美国公司的流程</a><br>
+			<a href="b.html?type=2">注册美国公司的条件</a><br>
+			
+		</div>
+	</body>
+</html>

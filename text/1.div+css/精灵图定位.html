@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>精灵图定位</title>
+		<style type="text/css">
+			ul li{
+				list-style: none;
+				width:46px;
+				height:46px;
+				border:1px solid #FF0000;
+				background:url('../imgs/side-bar.png') no-repeat;
+				margin-top:-1px;
+				overflow: hidden;
+				position: relative;
+			}
+			li:first-child{
+				background-position: 0px 0px;
+			}
+			li div{
+			       width: 24px;
+			       width: 46px;
+			       height: 39px;
+			       position: absolute;
+			       left: 0;
+			       top: 0;
+			       color: #fff;
+			       background: #e2231a;
+			       padding: 7px 6px 0;
+			       line-height: 16px;
+				    display: none; 
+				
+			}
+			li:first-child:hover div{
+				display: block;
+			}
+			li:nth-child(2){
+				background-position: -46px 0px;
+			}
+			li:nth-child(2):hover div{
+				display: block;
+			}
+			li:nth-child(3){
+				background-position: -92px 0px;
+			}
+			li:nth-child(4){
+				background-position: -138px 0px;
+			}
+			.box{
+				width:300px;
+				height:200px;
+				border:1px solid #ccc;
+				overflow: hidden;
+				
+			}
+			.box:hover img{
+				transform:translateX(-10px);
+			}
+			.box img{
+				width:200px;
+				height:200px;
+				transition:all .5s;
+				vertical-align: middle;
+			}
+			
+			.box5{
+				margin-top:20px;
+				width:300px;
+				height:200px;
+				background:pink;
+				transition:all .4s;
+				float:left;
+				margin-right:10px;
+			}
+			.box5:hover{
+				
+				transform: translateY(-5px);
+				box-shadow:0px 5px 10px 0px #999;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div id="">
+					返回顶部
+				</div>
+			</li>
+			<li>
+				<div id="">
+					浏览历史
+				</div>
+			</li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="box">
+			<img src="https://img13.360buyimg.com/cms/jfs/t1/15813/30/11569/10010/5c90c191Ec17c1cb0/e572596eac9a22e2.jpg!q90" >
+		</div>
+		
+		<div class="box5">
+				世界你好
+		</div>
+		<div class="box5">
+				世界你好
+		</div>
+		<div class="box5">
+				世界你好
+		</div>
+		
+		<div>
+			<img src="https://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2020/03/19/182/8edb51e2-494b-4b85-bdd1-7f1aeebdc6f3-1_290x290_90.jpg" >
+		</div>
+	</body>
+</html>

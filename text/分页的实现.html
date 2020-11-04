@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分页实现</title>
+    <style>
+        ul{
+            text-align: center;
+            display: flex;
+            list-style: none;
+        }
+        .num{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #eee;
+            margin-right: 5px;
+        }
+        .nums{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #eee;
+            margin-right: 5px;
+        }
+        .emst{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #eee;
+            margin-right: 5px;
+        }
+        .inp{
+            height: 30px;
+            line-height: 30px;
+            margin-right: 5px;
+        }
+        input{
+            width: 70px;
+        }
+        .changeColor{
+            background-color: blue;
+            color: azure;
+        }
+        button{
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <button id="addbtn">上一页</button>
+        <li class="num">1</li>
+        <li class="num">2</li>
+        <li class="num">3</li>
+        <li class="num">4</li>
+        <li class="num">5</li>
+        <li class="emst">...</li>
+        <li class="nums">220</li>
+        <li class="inp">
+            跳转至
+            <input type="number" id="inp">
+        </li>
+        <li class="nums go">GO</li>
+        <button id="btn">下一页</button>
+    </ul>
+    <script>
+        let grounpPages=[]
+        let groundNum=5
+        let whiles=220
+        for(let i=0;i<whiles;i++){
+            let j=i+1
+            let index=parseInt(j / groundNum)
+            if(j % groundNum===0){
+                index-=1
+            }
+            if(!grounpPages[index]){
+                grounpPages[index]=[]
+            }
+            grounpPages[index].push(j)
+        }
+        const litli=document.getElementsByTagName('li')
+        const emst=document.querySelector('.emst')
+        const btn=document.getElementById('btn')
+        const add=document.getElementById('addbtn')
+        const go=document.querySelector('.go')
+        let litNew=[]
+        for(let j=0;j<litli.length;j++){
+            if(litli[j].className=='num'){
+                litNew.push(litli[j])
+            }
+        }
+        for(let i=0;i<litNew.length;i++){
+            litNew[i].onclick=()=>{
+                let pagesNum=parseInt(litNew[i].innerHTML)
+                changePages(pagesNum)
+            }
+        }
+        // 下一个函数
+        btn.onclick=()=>{
+            let num=nowNum+=1
+            if(num>whiles)num=whiles
+            changePages(num)
+        }
+        // 上一页函数
+        add.onclick=()=>{
+            let num=nowNum-=1
+            if(num<1)num=1
+            changePages(num)
+        }
+        // 输入页面函数
+        go.onclick=()=>{
+            let inp=parseInt(document.getElementById('inp').value)
+            if(inp==''||inp<1){
+                alert('请输入正确的数字')
+            }else{
+                if(inp<1 || inp>whiles) return
+                changePages(inp)
+            }
+        }
+       let caseChangeColor=0
+       let nowNum=0//当前选中的按钮
+        function changePages(num){
+            let numIndex=-1//小数组在大数组中的索引
+            let pageIndex=-1//小数组中数字的索引
+            for(let i=0;i<grounpPages.length;i++){
+                if(num >=grounpPages[i][0] && num <= grounpPages[i][groundNum-1]){
+                    numIndex=i;
+                    break;
+                }
+            }
+            pageIndex=grounpPages[numIndex].indexOf(num)
+            console.log(pageIndex);
+            for(let q=0;q<grounpPages[numIndex].length;q++){
+                litNew[q].innerHTML=grounpPages[numIndex][q]
+            }
+            if(numIndex==grounpPages.length-1){
+                emst.style.display='none'
+                btn.style.display='none'
+            }else{
+                emst.style.display='block'
+                btn.style.display='block'
+            }
+            litNew[caseChangeColor].classList.remove('changeColor')
+            litNew[pageIndex].classList.add('changeColor')
+            caseChangeColor=pageIndex
+            nowNum=num
+        }
+        changePages(1)
+    </script>
+</body>
+</html>

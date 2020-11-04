@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>滚动条</title>
+		<style type="text/css">
+			body{
+				width:100%;
+			}
+			*{
+				margin:0;
+				padding:0
+			}
+			#outBox{
+				width:100%;
+				height:400px;
+				overflow: auto;
+			}
+			#inner_box{
+				padding:0 10px;
+				height:400px;
+				width:3000px;
+				display: flex;
+				justify-content: space-between;
+			}
+			.item{
+				width:290px;
+				height:400px;
+				/* float: left; */
+				font-size:24px;
+				
+			}
+			.item:nth-child(odd){
+				background:skyblue;
+			}
+			.item:nth-child(even){
+				background:pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outBox">
+			<div id="inner_box">
+				<div class="item">
+					1
+				</div>
+				<div class="item">
+					2
+				</div>
+				<div class="item">
+					3
+				</div>
+				<div class="item">
+					4
+				</div>
+				<div class="item">
+					5
+				</div>
+				<div class="item">
+					6
+				</div>
+				<div class="item">
+					7
+				</div>
+				<div class="item">
+					8
+				</div>
+				<div class="item">
+					9
+				</div>
+				<div class="item">
+					10
+				</div>
+			</div>
+		</div>
+		<h1>滚动条</h1>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
+</html>

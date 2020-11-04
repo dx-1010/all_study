@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="pencil" unicode="&#xe800;" d="M0-41q0 4 1 8t1 8 1 8 1 6l0 2 74 267q10 31 31 53l325 324 0 2 2 2 150 152q60 59 146 59 106 0 186-80 74-74 81-171t-58-161l-476-481q-24-23-55-31l-263-70-3-1q-3-1-7-2t-9-1-10-1-9-1q-45 0-77 32t-32 77z m63 0q0-19 13-33t33-14q6 0 22 4l115 32q4 58-43 105-45 45-105 43l-32-119q-3-14-3-18z m44 168q67-2 118-52t52-120l116 30 11 6q41 47 34 115t-61 121q-51 49-115 59t-112-24q-7-10-11-21z m131 225q45-2 90-20l295 295q-88 22-144-33z m119-35q38-20 65-45 21-22 41-55l297 299q-16 31-39 55-30 29-67 45z m122-129q17-41 21-82l0-24 242 245 0 2q61 60 31 156z m101 508q106 0 186-80 70-73 78-166l0-22 52 55q45 45 41 111-5 74-62 131-63 62-143 62-60 0-101-41z" horiz-adv-x="1000" />
+
+<glyph glyph-name="right-open" unicode="&#xe801;" d="M0-2l352 352-352 352 148 148 352-351 148-149-148-148-352-352z" horiz-adv-x="648" />
+
+<glyph glyph-name="down-open" unicode="&#xe802;" d="M0 526l148 148 352-351 352 351 148-148-352-352-148-148-148 148z" horiz-adv-x="1000" />
+
+<glyph glyph-name="user" unicode="&#xe803;" d="M0-150l0 156q0 24 58 58t159 71q99 35 137 73t37 101q0 29-27 72t-32 59q-12 35-29 135-10 52-14 93-2 22 6 50t28 60 67 52 110 20 110-20 67-52 28-60 6-50q-4-41-14-93-17-100-29-135-6-16-32-59t-27-72q0-64 37-101t137-73q217-80 217-129l0-156-1000 0z" horiz-adv-x="1000" />
+
+<glyph glyph-name="search" unicode="&#xe804;" d="M746 209l254-255-105-105-254 254q-106-72-232-72-169 0-289 120t-120 289 120 289 289 120 289-120 120-289q0-127-72-231z m-65 231q0 113-79 193t-193 80-193-80-80-193 80-192 193-80 193 80 79 192z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

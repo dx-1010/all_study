@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>下载文件</title>
+		<style type="text/css">
+			#box {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				text-align: center;
+			}
+
+			label {
+				width: 33.3%
+			}
+
+			input {
+				width: 40px;
+				height: 40px;
+				display: inline-block;
+			}
+
+			#btn {
+				text-align: center;
+				margin-top: 30px;
+			}
+
+			button {
+				font-size: 20px;
+				padding: 20px 40px;
+				background: red;
+				border: none;
+				color: #fff;
+				display: inline-block;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="inpval" style="font-size:60px;margin-bottom:100px;">
+			请选择你要查询的国家/地区
+		</div>
+		<div id="isShow" style="display: none;">
+			<form action="#">
+				<div id="box">
+					<label><input type="checkbox" value="美国" name="city" />美国</label>
+					<label><input type="checkbox" value="香港" name="city" />香港</label>
+					<label><input type="checkbox" value="新加坡" name="city" />新加坡</label>
+					<label><input type="checkbox" value="开曼" name="city" />开曼</label>
+					<label><input type="checkbox" value="英属维尔京群岛" name="city" />英属维尔京群岛</label>
+					<label><input type="checkbox" value="英国" name="city" />英国</label>
+					<label><input type="checkbox" value="澳大利亚" name="city" />澳大利亚</label>
+					<label><input type="checkbox" value="加拿大" name="city" />加拿大</label>
+					<label><input type="checkbox" value="韩国" name="city" />韩国</label>
+					<label><input type="checkbox" value="德国" name="city" />德国</label>
+					<label><input type="checkbox" value="日本" name="city" />日本</label>
+					<label><input type="checkbox" value="其他" name="city" />其他</label>
+				</div>
+				<div id="btn">
+					<button type="button" class="quexiao">取消</button>
+					<button type="button" class="queding">确定</button>
+				</div>
+			</form>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//显示区域
+				$('#inpval').click(function() {
+					$('#isShow').show()
+				});
+				//确定按钮
+				
+				$('.queding').click(function() {
+					var arr = [];
+					var arrToStr;
+					let inpval = $('input:checked');
+					console.log(inpval)
+					if (inpval.length>0) {
+						inpval.each(function(i, v) {
+							arr[i] = $(this).val()
+						})
+						console.log('arr', arr)
+						//数据回填
+						arrToStr = arr.toString();
+						$('#inpval').html(arrToStr)
+						//隐藏该区域
+						$('#isShow').hide();
+					} else {
+						$('#isShow').show()
+					}
+				})
+				//取消按钮
+				$('.quexiao').click(function() {
+					$('input').prop('checked', false);
+					$('#inpval').html('请选择你要查询的国家/地区')
+				})
+
+			})
+		</script>
+	</body>
+</html>
