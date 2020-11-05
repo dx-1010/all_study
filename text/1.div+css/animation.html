@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<title>动画</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul li {
+				list-style: none;
+				width:100%;
+				height:100px;
+				overflow: hidden;
+			}
+
+			.outBox {
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+				margin: 100px auto;
+			}
+
+			ul {
+				margin-top:0;
+				width: 100%;
+				height: 400px;
+				transition: margin-top .5s;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outBox">
+			<ul style="margin-top:0">
+				<li>
+					<img src="./王者荣耀图片/1.jpg" />
+				</li>
+				<li>
+					<img src="./王者荣耀图片/11.jpg" />
+				</li>
+				<li>
+					<img src="./王者荣耀图片/13.jpg" />
+				</li>
+				<li>
+					<img src="./王者荣耀图片/5.jpg" />
+				</li>
+				<!-- <li>
+					<img src="./王者荣耀图片/1.jpg" />
+				</li> -->
+			</ul>
+
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				let index = 0;
+				let list = document.querySelectorAll('li');
+				let listimg = document.querySelectorAll('img');
+				let timer = null;
+				timer = setInterval(function(){
+					index++
+					if(index>list.length-1){
+						index=0;
+					}
+					document.querySelector('ul').style.marginTop = -index*document.querySelector('li').offsetHeight+'px';
+				},3000)
+				for(let i=0;i<listimg.length;i++){
+					listimg[i].onmousemove = function(){
+						clearInterval(timer)
+					}
+				}
+				for(let i=0;i<listimg.length;i++){
+					listimg[i].onmouseout = function(){
+						timer = setInterval(function(){
+							index++
+							if(index>list.length-1){
+								index=0;
+							}
+							document.querySelector('ul').style.marginTop = -index*document.querySelector('li').offsetHeight+'px';
+						},3000)
+					}
+				}
+				
+
+			}
+		</script>
+	</body>
+</html>

@@ -5,9 +5,10 @@
 		<title>吸顶效果</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 		<style type="text/css">
-		/* 	body{
-				font-size:38px;
-			} */
+		/*未解决的问题：
+			1.fixed属性在安卓手机上失效；
+			
+		 */
 			*{
 				margin:0;
 				padding:0;
@@ -82,11 +83,11 @@
 				<div class="content-item">
 					3
 				</div>
-				
 			</div>
 		</div>
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
 		<script type="text/javascript">
+			
 			$(function(){
 				console.log($(window).height())
 				//1.页面滚动事件
@@ -120,7 +121,7 @@
 					})
 				})
 				
-				//2.tabbar点击事件
+				// 2.tabbar点击事件
 				$('.tabbar-item').on('click',function(){
 					//点击当前这个添加上active类名，其它兄弟移除类名
 					$(this).addClass('active').siblings().removeClass('active')
@@ -132,7 +133,6 @@
 					})
 					console.log(contentTop)
 				})
-				
 			})
 		</script>
 	</body>

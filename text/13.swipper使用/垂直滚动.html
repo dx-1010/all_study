@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>垂直滚动</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="./dist/css/swiper.min.css">
+
+  <!-- Demo styles -->
+  <style>
+	  *{
+		  margin:0;
+		  padding:0;
+		  box-sizing: border-box;
+	  }
+    html, body {
+	  width:100%:
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 33.3%;
+      height: 200px;
+	  border: 1px dashed skyblue;
+    }
+    .swiper-slide {
+	  width:100%;
+	  height:100%;
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+	.box{
+		display: flex;
+		justify-content: space-between;
+	}
+	.left,.right{
+		width:33.3%;
+		text-align:center;
+		border: 1px dashed pink;
+	}
+	.swiper-wrapper img{
+		width:100%;
+		
+	}
+  </style>
+</head>
+<body>
+ 
+  <div class="box">
+  	<div class="left">
+		left
+  	</div>
+	<!-- Swiper -->
+  	<div class="swiper-container">
+  	  <div class="swiper-wrapper">
+  	    <div class="swiper-slide swiper-no-swiping"><img src="http://imgservice.suning.cn/uimg1/sniss/improve/5VvFswOt-wS7K7qbMmBS8g.jpg?format=_is_200w_200h_4e.webp" ></div>
+  	    <div class="swiper-slide swiper-no-swiping"><img src="//imgservice.suning.cn/uimg1/sniss/improve/1hkUSAhnKFhhRkNdtCGGcg.jpg?format=_is_200w_200h_4e.webp" ></div>
+  	    <div class="swiper-slide swiper-no-swiping"><img src="//imgservice.suning.cn/uimg1/sniss/improve/iAW45sDNV6rEMls6eDZU8w.jpg?format=_is_200w_200h_4e.webp" ></div>
+  	  </div>
+  	</div>
+	<div class="right">
+	   right
+	</div>
+  </div>
+  
+  <!-- Swiper JS -->
+  <script src="./dist/js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',  //垂直方向播放
+	  noSwiping :true, //禁止滑动  需在swiper-slide 上再添加一个类名 swiper-no-swiping
+	  loop : true,  //形成闭环
+	  autoplay: {   //自动播放
+	      delay: 3000,
+	      stopOnLastSlide: false,
+	      disableOnInteraction: false,
+	      },
+    });
+	
+  </script>
+</body>
+</html>
+
+
+
