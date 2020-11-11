@@ -1,0 +1,39 @@
+//屏幕宽度大于等于750px时，将html的字体大小设置为75px;
+// 设置为75px是因为flexible默认将屏幕划分成10分；针对750px的设计稿;
+// 所以1rem=750/10=75px;
+@media screen and (min-width:750px){
+    html{
+        font-size:75px !important;
+    }
+}
+@font75:75;
+body{
+    min-width:320px;
+    max-width: 750px;
+    width:10rem;
+    margin:0 auto;
+}
+.top{
+    width:750rem/@font75;
+    height:88rem/@font75;
+    background:tomato;
+    line-height: 88rem/@font75;
+    position: relative;
+   
+        img{
+            position: absolute;
+            width:36rem/@font75;
+            height:60rem/@font75;
+            top:.15rem;
+            left:.2rem;
+        }
+        span{
+            font-size:.4rem;
+            display: inline-block;
+            position: absolute;
+            top:0;
+            left:1rem;
+            color:#fff;
+        }
+
+}
