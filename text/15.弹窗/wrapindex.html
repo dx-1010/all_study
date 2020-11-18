@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>弹窗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+         body{
+             width:100%;
+             height:100%;
+             background:#ccc;
+         }
+        .inpBtn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: orange;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        /* 弹窗样式 */
+        .from-data{
+            width:90%;
+            height: 228px;
+            background:url(./imgs/tanbg.png) no-repeat center;
+            border-radius: 10px;
+            overflow: hidden;
+            background-size: 100%;
+        }
+        .modal-box{
+            width:100%;
+            height:100%;
+            background-color:  rgba(0,0,0,.5);
+            position: fixed;
+            top:0;
+            left:0;
+            bottom: 0;
+            right:0;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .from-data{
+            position:relative;
+        }
+        .from-data .content-title{
+            text-align: center;;
+            color:#fff;
+            margin-top:23px;
+        }
+        .inp-btn{
+            width:90%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top:40px;
+            margin:0 auto;
+            
+        }
+        .tel{
+            border-radius: 4px;
+            text-indent: 6px;
+        }
+        .btn-submit{
+            border-radius: 17px;
+            background:#FF6700;
+            color:#fff;
+            cursor: pointer;
+            margin-top:24px;
+        }
+        .tel,.btn-submit{
+            outline: none;
+            border:none;
+            display: block;
+            width:100%;
+            height:34px;
+            line-height: 34px;
+        }
+        .cancel{
+            position: absolute;
+            right:10px;
+            top:2px;
+            font-size:24px;
+            color:#fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        /* 提交成功弹窗 */
+        .sub-box .from-data{
+            height:176px;
+        }
+        #modalBox,#subBox{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="inpBtn" type="button" value="立即预约" data-type="恭喜您！预约成功" data-title="爆款之降" data-price="美国商标注册，特惠价&yen;4500">
+    <input class="inpBtn" type="button" value="立即抢购" data-type="恭喜您！抢购成功" data-title="美国公司注册" data-price="美国商标注册，特惠价&yen;4500">
+    <input class="inpBtn" type="button" value="立即预约" data-type="恭喜您！预约成功" data-title="日本公司注册" data-price="美国商标注册，特惠价&yen;4500">
+    <input class="inpBtn" type="button" value="立即抢购" data-type="恭喜您！抢购成功" data-title="开曼公司" data-price="美国商标注册2，特惠价&yen;4500">
+    <input class="inpBtn" type="button" value="立即领取" data-type="恭喜您！领取成功" data-title="加拿大商标注册" data-price="美国商标注册3，特惠价&yen;4500">
+    <div style="height:2000px;">1</div>
+    <!-- 弹窗 -->
+    <div class="modal-box" id="modalBox">
+        <div class="from-data">
+            <from action="" id="form-msg">
+                <div class="content">
+                    <div class="content-title">
+                        <p class="title">必抢爆款</p>
+                        <p class="price">美国商标注册，特惠价&yen;4500</p>
+                    </div>
+                    <div class="inp-btn">
+                        <input class="tel" type="tel" placeholder="请输入您的手机号" maxlength="11">
+                        <p style="text-align:left;width:100%;color:red;" class="text"></p>
+                        <button type="submit" class="btn-submit">提交</button>
+                    </div>
+                </div>
+            </from>
+            <div class="cancel">×</div>
+        </div>
+    </div>
+
+    <!-- 提交成功的弹窗 -->
+    <div class="modal-box sub-box" id="subBox">
+        <div class="from-data">
+            <from action="">
+                <div class="content">
+                    <div class="content-title">
+                        <p class="title-type">提交成功</p>
+                        <p>稍后顾问将与您联系，为您提供服务及优惠，请保持手机畅通。</p>
+                    </div>
+                </div>
+            </from>
+            <div class="cancel">×</div>
+        </div>
+    </div>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $(function(){
+            // 打开弹窗
+            $('.inpBtn').click(function(){
+                // 弹窗显示禁止鼠标滚动
+                $('body').css({
+                    overflow:'hidden'
+                })
+                
+                // 清空输入框的value值
+                $('#form-msg').find('.tel').val('');
+
+                let title = $(this).data('title');
+                let price = $(this).data('price');
+                let type = $(this).data('type')
+                console.log(title,price,type)
+                $('#modalBox').find('.title').html(title)
+                $('#modalBox').find('.price').html(price)
+                $('#modalBox').css({display:'block',display:'flex'})
+                $('#subBox').find('.title-type').html(type)
+            })
+
+            // 点击叉号关闭弹窗
+            $('.cancel').click(function(){
+                // 弹窗关闭鼠标滚动
+                $('body').css({
+                    overflow:''
+                })
+                $('#modalBox').css({display:'none',display:''})
+                $('#subBox').css({display:'none',display:''})
+            })
+
+            // 弹窗提交按钮的点击事件
+            $('#modalBox .btn-submit').click(function(){
+                //验证手机号 手机号不能为空  请输入正确的手机号
+                let tel = $('#form-msg').find('.tel').val();
+                let myreg = /^1[3|4|5|7|8][0-9]{9}$/;
+                if(tel==""){
+                    $('#form-msg').find('.text').html('请输入您的手机号！')
+                }else if(tel.length!=11){
+                    $('#form-msg').find('.text').html('请输入11位手机号码！')
+                }else if(!myreg.test(tel)){
+                    $('#form-msg').find('.text').html('您输入的手机号码格式错误')
+                }else{
+                    //手机号验证通过后发送请求，成功后关闭当前弹窗，显示新的提交成功的弹窗
+
+
+                    // 关闭当前弹窗，显示新的提交成功的弹窗
+                    $('#modalBox').css({display:'none',display:'',})
+                    $('#subBox').css({display:'block',display:'flex'})
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

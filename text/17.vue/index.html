@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            margin-left: 50px;
+        }
+
+        .active {
+            color: orange;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        tr,
+        th,
+        td {
+            border: 1px solid #ccc;
+            border-spacing: 0px;
+        }
+
+        th,
+        td {
+            width: 100px;
+            text-align: center;
+            padding:10px 0;
+        }
+
+        .btn {
+            cursor: pointer;
+            padding:0 10px;
+        }
+
+        .outBox {
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .imgList {
+            width: 2000px;
+            height: 200px;
+        }
+
+        .imgList li {
+            list-style: none;
+            width: 400px;
+            height: 200px;
+            float: left;
+        }
+
+        .imgList li img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            transition: all .4s;
+        }
+
+        .left,
+        .right {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+            background: #ccc;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .left {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .right {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 其他 -->
+        <button type="button" @click="addData">添加数据</button>
+        <button type="button" @click="changeData">修改数据</button>
+        <button type="button" @click="isshowData">{{msg2}}</button>
+        <p v-show="isShow">见证奇迹的时刻，我出现啦！！！</p>
+        <p>{{msg}}</p>
+        <ul>
+            <li v-for="(item,index) in list" :key="index" @click="addStyle(index)"
+                :class="{active:currentIndex==index}">{{item}}</li>
+        </ul>
+
+
+        <!-- 购物车案例 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>列表</th>
+                    <th>名称</th>
+                    <th>单价</th>
+                    <th>
+                        数量
+                    </th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in tableList" :key="index">
+                    <td>{{index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price | priceFixed}}</td>
+                    <td><button class="btn" @click="addNum(index)">+</button><span>{{item.num}}</span><button
+                            class="btn" @click="redNum(index)" :disabled="item.num<=0">-</button></td>
+                    <!-- 优化方案 -->
+                    <!-- <td><button class="btn" @click="item.num++">+</button><span>{{item.num}}</span><button class="btn" @click="item.num--" :disabled="item.num<=0">-</button></td> -->
+                    <td>{{item.price*item.num | priceFixed}}</td>
+                    <td><button class="btn" @click="delData(index)">删除</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="total">总计：{{total | priceFixed}}</div>
+
+
+        <!-- 切换图片 -->
+        <div class="outBox">
+            <ul class="imgList">
+                <!-- <li v-for="(item,index) in imgsList" :key="index"><img :src="item" alt="" :title="item"></li> -->
+                <li><img :src="imgsList[imgIndex]" alt=""></li>
+            </ul>
+            <div class="left" @click="leftClick" v-show="imgIndex!=0">&lt;</div>
+            <div class="right" @click="rightClick" v-show="imgIndex<imgsList.length-1">&gt;</div>
+        </div>
+        <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: "电视剧列表:",
+                    list: ['海贼王', '猫和老鼠', '百变小樱魔术卡', '神厨小福贵', '白雪公主'],
+                    currentIndex: 0,
+                    pushList: ['1海贼王', '1猫和老鼠', '1百变小樱魔术卡', '1神厨小福贵', '1白雪公主'],
+                    isShow: true,
+                    msg2: '隐藏数据',
+                    tableList: [
+                        { name: '香蕉', price: '30.00', num: 1 },
+                        { name: '西瓜', price: '50.20', num: 2 },
+                        { name: '草莓', price: '10.03', num: 3 },
+                        { name: '葡萄', price: '30.00', num: 1 },
+                        { name: '榴莲', price: '20.00', num: 5 },
+                        { name: '山竹', price: '10.00', num: 1 },
+                        { name: '地瓜', price: '30.00', num: 0 },
+                    ],
+                    total: 0,
+                    imgsList: ['./imgs/img1.jpg', './imgs/img2.jpg', './imgs/img3.jpg', './imgs/img4.jpg', './imgs/img5.jpg'],
+                    imgIndex: 0,
+                },
+                methods: {
+                    addStyle(index) {
+                        this.currentIndex = index;
+                        // console.log(this.currentIndex)
+                    },
+                    addData() {
+
+                        this.pushList.forEach(el => {
+                            this.list.push(el)
+                        });
+
+                    },
+                    changeData() {
+                        this.msg = "儿时回忆"
+                    },
+                    isshowData() {
+                        this.isShow = !this.isShow;
+                        if (this.isShow) {
+                            this.msg2 = "隐藏数据"
+                        } else {
+                            this.msg2 = "显示数据"
+                        }
+                    },
+                    // 购物车方法！！！！！
+                    totalPrice() {
+                        // 注意：此处定义变量名不可以和data中定义的变量名一至，否则总价会出错；
+                        let allPrice = 0
+                        this.tableList.forEach((el, i) => {
+                            // console.log(el.price*el.num)
+                            allPrice += el.price * el.num
+                        })
+                        return this.total = allPrice;
+                    },
+                    // 删除数据
+                    delData(index) {
+                        this.tableList.splice(index, 1)
+                        console.log(index);
+                    },
+                    // 增加num
+                    addNum(index) {
+                        this.tableList[index].num++
+                        this.totalPrice()
+                    },
+                    // 减少num
+                    redNum(index) {
+                        this.tableList[index].num--
+                        this.totalPrice()
+
+                    },
+                    // 切换图片方法！！！！
+                    leftClick() {
+                            this.imgIndex--
+                    },
+                    rightClick() {                     
+                            this.imgIndex++
+                    }
+                },
+                filters: {
+                    priceFixed: function (value) {
+                        // !!!!!!注意：此处需把value装换成numbler类型然后才能调用toFixed()
+                        return '￥' + (parseFloat(value).toFixed(2))
+                    }
+                },
+                created() {
+                    //计算总价
+                    this.totalPrice()
+                }
+            })
+        </script>
+
+</body>
+
+</html>

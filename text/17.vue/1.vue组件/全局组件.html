@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局组件</title>
+</head>
+<body>
+    <div id="app">
+        <global-cpn :tomsg="msg"></global-cpn>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        // 创建一个全局组件
+        // 注意：组件名是驼峰命名渲染不出来，这是为什么？？？
+        Vue.component('global-cpn',{
+            
+            template:`
+                <ul>
+                <li v-for="(item,index) in tomsg">{{item}}</li>
+                </ul>
+            `,
+            props:['tomsg']
+          
+        })
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:['猪猪侠','猪猪妹','猪猪哥']
+            },
+            
+        })
+
+
+        
+    </script>
+</body>
+</html>

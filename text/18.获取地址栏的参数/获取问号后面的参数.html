@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取问号后面的参数</title>
+</head>
+<body>
+    <script>
+         //例如：http:www.baidu.com?name=杜希&age=24
+         //定义一个空对象来存储路径中获取的参数
+         var object = {};
+        //1.获取？后面的所有内容包括问号
+        var url= decodeURI(location.search);
+        console.log(url)
+        // 2.截取？后面的字符串
+        let urlData = url.substr(1);
+        console.log(urlData)
+        var strs = urlData.split("&");
+        console.log('strs',strs)
+        for(var i = 0; i < strs.length; i ++)
+        {
+            object[strs[i].split("=")[0]]=strs[i].split("=")[1]
+        }
+        console.log(object)
+    </script>
+</body>
+</html>

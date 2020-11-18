@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取地址栏的参数</title>
+</head>
+<body>
+    <script>
+        // 地址例如：http://devintnews.zbj.com/topic/mg.html   只截取mg
+        var url= decodeURI(location.pathname);
+        // 获取最后一个斜杠的位置
+        var lastLocation = url.lastIndexOf("/")+1;
+        console.log(lastLocation)
+        // 获取点的位置
+        var dotLocation = url.lastIndexOf('.')
+        console.log(dotLocation)
+        // 截取斜杠到点之间的字符串
+        var getStr = url.slice(lastLocation,dotLocation)
+        console.log(getStr)
+    </script>
+</body>
+</html>

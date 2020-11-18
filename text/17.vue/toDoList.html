@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记事本</title>
+    <style>
+        div{
+            box-sizing: border-box;
+        }
+        .listBox{
+            width:360px;
+            border:1px solid #ccc;
+            box-shadow: 5px 5px 5px #ccc;
+            padding:10px;
+        }
+        .inpBox{
+            border:none;
+            padding:10px 0;
+            outline: none;
+            width:100%;
+            border:1px solid #ccc;
+            text-indent:1rem;
+        }
+        .footer{
+            display: flex;
+            justify-content: space-between;
+            margin-top:10px;
+        }
+        ul{
+            padding:0;
+            margin:0;
+            width:100%;
+        }
+        ul li{
+            list-style: none;
+            border-bottom:1px solid #ccc;
+            padding:10px 0;
+            width:100%;
+            display:flex;
+        }
+        ul li:hover{
+            background:cornflowerblue;
+            color:#fff; 
+            cursor: pointer;   
+           
+        }
+        ul li span:first-child{
+            display: inline-block;
+            margin-right:10px;
+        }
+        ul li:hover span:nth-child(3){
+            display: block !important;
+        }
+        .isShow{
+            display: none !important;    
+            display: inline-block;
+            width:30px;
+        }
+        .content{
+            flex:1;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 修饰符 -->
+        <!-- 在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步 -->
+        <!-- trim去除首位空格 -->
+        <input v-model.lazy.trim="msgLazy" >
+        <h4>{{msgLazy}}</h4>
+        <input v-model.number="age" type="number">
+        <p>-------------------------------------------------------------------------------------------------------------------------------</p>
+
+        <h3>{{msg}}</h3>
+        <div class="listBox">
+            <input type="text" class="inpBox" @keyup.enter="addTask" v-model="task" placeholder="主人请输入您的下一个任务">
+            <ul>
+                <li v-for="(item,index) in taskList" :key="index" :title="item"><span>{{index+1}}.</span><span class="content">{{item}}</span><span class="isShow" @click="delTask(index)">×</span></li>
+            </ul>
+            <div class="footer" v-show="this.taskList!=0">
+                <span>总计：{{taskList.length}}条任务</span><span style="cursor: pointer;" @click="delAllTask">清空</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                msg:'记事本',
+                taskList:['星期天去看电影','星期六去约会','存钱买ipad','今天也要加油啊，明天会更好，相信自己你是最棒的，也是最胖的，哈哈哈哈哈哈，真是太可爱了'],
+                task:"",
+                msgLazy:'今天的不开心就止于此叭',
+                age:1,
+            },
+            methods:{
+                // 键盘回车追加任务
+                addTask(){
+                    // 输入框内容不为空的时候事件才有效
+                    if(this.task){
+                        this.taskList.push(this.task)
+                        this.task = ""
+                    }
+                    
+                },
+                delTask(index){
+                    this.taskList.splice(index,1)
+                },
+                delAllTask(){
+                    this.taskList = []
+                }
+            }
+        })
+    </script>
+</body>
+</html>

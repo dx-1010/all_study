@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>局部组件</title>
+</head>
+<body>
+    <div id="app">
+        <sub-child></sub-child>
+    </div>
+    <!--不能使用局部组件 因为未在当前实例中注册此组件-->
+    <div id="app2">
+        <sub-child></sub-child>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        // 局部组件
+        var Child = {
+            template:`<P>我是局部组件</P>`
+        }
+        var app2 = new Vue({
+            el:"#app2",
+        })
+        var app = new Vue({
+            el:'#app',
+            components:{
+                'subChild':Child
+            }
+            
+        })
+
+    </script>
+</body>
+</html>
