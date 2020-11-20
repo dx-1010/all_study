@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>flex实现瀑布流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            display: flex;
+            flex-flow: column wrap;
+            height: 100vh;
+        }
+
+        .item {
+            margin: 10px;
+            width: calc(100%/3 - 10px);
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item">
+            <img src="./imgs/1.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/2.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/3.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/4.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/5.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/6.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/7.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/8.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/9.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/10.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/11.jpg" alt="" />
+        </div>
+        <div class="item">
+            <img src="./imgs/12.jpg" alt="" />
+        </div>
+    </div>
+</body>
+
+</html>

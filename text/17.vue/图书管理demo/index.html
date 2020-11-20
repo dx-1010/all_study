@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        .box {
+            width: 600px;
+            margin: 100px auto;
+        }
+
+        .pushLis {
+            display: flex;
+            justify-content: space-between;
+            height: 45px;
+            line-height: 45px;
+            background: skyblue;
+            padding: 0 10px;
+        }
+
+        input,
+        button {
+            border: none;
+            outline: none;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            padding: 4px 0;
+        }
+
+        button {
+            background: none;
+            cursor: pointer;
+            height: 30px;
+            background: #ccc;
+            padding: 0 10px;
+            margin-top: 9px;
+           
+            border-radius: 3px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background: pink;
+        }
+
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid gold;
+        }
+
+        th,
+        td {
+            width: 150px;
+            text-align: center
+        }
+
+        tr {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        a {
+            color: #000;
+        }
+
+        thead>tr {
+            background: rgb(248, 192, 9);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <div class="pushLis">
+                <div class="left">
+                    <label for="">编号：</label>
+                    <input v-model="id" :disabled="flag" v-focus>
+                </div>
+                <div class="right">
+                    <label for="">名称：</label>
+                    <input type="text" v-model="cname">
+                </div>
+                <button @click="addData" :disabled="isTrue">提交</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in tableList" :key="index">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.ctime | formaDate('yyyy-MM-dd hh:mm')}}</td>
+                        <td>
+                            <a href="javascript:;" @click="changeData(item.id)">修改</a>
+                            <span>|</span>
+                            <a href="javascript:;" @click="del(item.id)">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">总计：{{totalBook}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                tableList: [
+                    { id: 1, name: '三国演义', ctime: new Date() },
+                    { id: 2, name: '西游记', ctime: new Date() },
+                    { id: 3, name: '水浒传', ctime: new Date() },
+                    { id: 4, name: '白雪公主', ctime: new Date() },
+                    { id: 5, name: '还珠格格', ctime: new Date() },
+                ],
+                id: '',
+                cname: '',
+                flag: false,
+                isTrue: false
+            },
+            methods: {
+                addData() {
+                    //根据flag来判断是否为修改数据,如果是修改数据flag=true反之是添加数据
+                    if (this.flag) {
+                        //修改数据
+                        this.tableList.some((item) => {
+                            if (item.id == this.id) {
+                                item.name = this.cname;
+                                this.flag = false;
+                            }
+                        })
+                    } else {
+                            //添加数据
+                            if (this.id != "" && (this.cname).trim() != "") {
+                                let obj = {};
+                                obj.id = this.id;
+                                obj.name = this.cname;
+                                obj.ctime = new Date()
+                                this.tableList.push(obj)
+                            }
+                    }
+                    this.id = "";
+                    this.cname = "";
+                },
+                del(id) {
+                    // 通过判断和id对比来删除数据
+                    //通过findIndex()方法
+                    let index = this.tableList.findIndex((item) => {
+                        return item.id == id
+                    })
+                    this.tableList.splice(index, 1)
+
+
+                    //通过filter()方法进行删除
+                    // this.tableList = this.tableList.filter(function (item) {
+                    //     return item.id != id
+                    // })
+                },
+                changeData(id) {
+                    this.flag = true;
+                    this.tableList.some((item) => {
+                        if (item.id == id) {
+                            this.id = item.id;
+                            this.cname = item.name;
+                        }
+                    })
+                }
+            },
+            computed: {
+                // 总数
+                totalBook() {
+                    return this.tableList.length
+                }
+            },
+            watch:{
+                cname(val){
+                    //监听书名，如果输入书名已经存在则将按钮禁用 some遍历返回的是一个布尔值
+                    var flag1 = this.tableList.some((item) => {
+                            return item.name == val
+                        })
+                    if(flag1){
+                        
+                        this.isTrue = true;
+                    }else{
+                        this.isTrue = false;
+                    }
+                }
+            },
+            // 注册局部自定义指令directives
+            directives: {
+                focus: {
+                    inserted: function (el) {
+                        el.focus()
+                    }
+                }
+            },
+            // 时间过滤器
+            filters: {
+                formaDate(value, fmt) {
+                    var date = new Date(value);
+                    var o = {
+                        "M+": date.getMonth() + 1, //月份
+                        "d+": date.getDate(), //日
+                        "h+": date.getHours(), //小时
+                        "m+": date.getMinutes(), //分
+                        "s+": date.getSeconds(), //秒
+                        "w+": date.getDay(), //星期
+                        "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+                        "S": date.getMilliseconds() //毫秒
+                    };
+                    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+                    for (var k in o) {
+                        if (k === 'w+') {
+                            if (o[k] === 0) {
+                                fmt = fmt.replace('w', '周日');
+                            } else if (o[k] === 1) {
+                                fmt = fmt.replace('w', '周一');
+                            } else if (o[k] === 2) {
+                                fmt = fmt.replace('w', '周二');
+                            } else if (o[k] === 3) {
+                                fmt = fmt.replace('w', '周三');
+                            } else if (o[k] === 4) {
+                                fmt = fmt.replace('w', '周四');
+                            } else if (o[k] === 5) {
+                                fmt = fmt.replace('w', '周五');
+                            } else if (o[k] === 6) {
+                                fmt = fmt.replace('w', '周六');
+                            }
+                        } else if (new RegExp("(" + k + ")").test(fmt)) {
+                            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                        }
+                    }
+                    return fmt;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

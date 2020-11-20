@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab选项卡</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        [v-cloak]{
+            display: none
+        }
+        .outBox{
+            width:400px;
+            margin:100px auto;
+        }
+        .title{
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height:45px;
+            line-height: 45px;
+            background:skyblue;
+        }
+        .title-item{
+            flex:1;
+            text-align:center;
+
+
+        }
+        .titleActive{
+            color:#fff;
+            background:pink;
+        }
+        .content{
+            width:100%;
+            height:300px;
+        }
+        .content-item{
+            width:100%;
+            height:100%;
+            text-align:center;
+            line-height: 300px;
+            color:#fff;
+            font-size:30px;
+            display: none;
+        }
+        .content-item:first-child{
+            background:tomato;
+        }
+        .content-item:nth-child(2){
+            background:turquoise;
+        }
+        .content-item:nth-child(3){
+            background:violet;
+        }
+        .contentActive{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 关键思路
+    通过currentIndex和索引建立联系
+    -->
+    <div id="app">
+        <div class="outBox">
+            <div class="title">
+                <div class="title-item" :class="currentIndex==index?'titleActive':''" v-for="(item,index) in titleList" :key="index" @click="changeItem(index)"  v-cloak>{{item}}</div>
+                <!-- <div class="title-item">2</div>
+                <div class="title-item">3</div> -->
+            </div>
+            <div class="content">
+                <div class="content-item" :class="currentIndex==index?'contentActive':''" v-for="(item,index) in contentList" :key="index">{{item}}</div>
+                <!-- <div class="content-item">2</div>
+                <div class="content-item">3</div> -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                titleList:['壹','贰','叁'],
+                currentIndex:0,
+                contentList:['壹的内容','贰的内容','叁的内容']
+            },
+            methods:{
+                changeItem(index){
+                    this.currentIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

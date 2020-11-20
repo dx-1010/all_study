@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch监听</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName"><br>
+        <input type="text" v-model="lastName"><br>
+        <span>我是计算属性所得：{{fullName}}</span><br>
+        <span>我是watch所得：{{allName}}</span>
+        
+    </div>
+
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                firstName:'杜',
+                lastName:'希',
+                allName:'杜希'
+            },
+            // 计算属性
+            computed:{
+                fullName(){
+                    return this.firstName+this.lastName
+                }
+            },
+            //watch监听
+            watch:{
+                firstName(val){
+                    this.allName = val+this.lastName
+                },
+                lastName(val){
+                    this.allName = this.firstName+val
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
